@@ -1,4 +1,4 @@
-class CreateOauthTables < ActiveRecord::Migration
+class CreateOauthTables < ActiveRecord::Migration[6.1]
   def self.up
     create_table :client_applications do |t|
       t.string :name
