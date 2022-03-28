@@ -1,5 +1,6 @@
 require 'oauth/controllers/provider_controller'
 class OauthController < ApplicationController
+  alias :login_required :authenticate_user!
   include OAuth::Controllers::ProviderController
 
   protected
