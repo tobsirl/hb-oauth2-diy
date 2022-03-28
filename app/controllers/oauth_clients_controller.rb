@@ -13,7 +13,7 @@ class OauthClientsController < ApplicationController
   end
 
   def create
-    @client_application = current_user.client_applications.build(params[:client_application])
+    @client_application = current_user.client_applications.build(user_params)
     if @client_application.save
       flash[:notice] = "Registered the information successfully"
       redirect_to :action => "show", :id => @client_application.id
@@ -49,5 +49,9 @@ class OauthClientsController < ApplicationController
       flash.now[:error] = "Wrong application id"
       raise ActiveRecord::RecordNotFound
     end
+  end
+
+  def user_params
+    params.require(:client_application).permit(:name, :email, :url)
   end
 end
