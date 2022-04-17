@@ -1,6 +1,7 @@
 require_relative "boot"
 
 require "rails/all"
+require 'oauth/rack/oauth_filter'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -10,6 +11,7 @@ module HbOauth2Provider
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
+    config.middleware.use OAuth::Rack::OAuthFilter
 
     # Configuration for the application, engines, and railties goes here.
     #
