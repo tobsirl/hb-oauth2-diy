@@ -5,6 +5,9 @@ class ClientApplication < ActiveRecord::Base
   has_many :access_tokens
   has_many :oauth2_verifiers
   has_many :oauth_tokens
+  has_many :client_applications
+  has_many :tokens, -> { includes(:client_application) },
+  :class_name => "Oauth2Token"
   validates_presence_of :name, :url, :key, :secret
   validates_uniqueness_of :key
   before_validation :generate_keys, :on => :create
